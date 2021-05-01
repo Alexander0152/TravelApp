@@ -11,3 +11,139 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.site_title {
+  display: none;
+}
+
+.wrapper {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+
+.content {
+  max-width: 1620px;
+  margin: 0 150px 0 150px;
+}
+
+.header {
+  width: 100%;
+  height: 94px;
+  background: #ffffff;
+  box-shadow: 0px 4px 8px rgba(44, 101, 77, 0.08);
+}
+
+.header_content {
+  width: 1620px;
+  height: 95px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.header_content a {
+  padding: 0;
+  margin: 0;
+}
+
+.logo {
+  margin-left: 0;
+  width: 59px;
+  height: 42px;
+  margin-top: 26px;
+  cursor: pointer;
+  /* background-image: url(assets/images/logo.svg); */
+}
+
+.navbar {
+  display: flex;
+  width: 573px;
+  height: 23px;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  margin: 37px 20px 0 28.6419%;
+}
+
+.navbar a {
+  color: #333333;
+}
+
+.navbar li {
+  margin: 0;
+}
+
+.navbar li a:hover {
+  color: orange;
+}
+
+.header_active {
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 19px;
+  text-decoration: underline;
+  margin: 0;
+  pointer-events: none;
+}
+
+.first_screen {
+  height: 540px;
+  background-image: url(assets/images/first_screen.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.social_net {
+  width: 20px;
+  height: 107px;
+  float: left;
+  margin-top: 216px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.social_net li {
+  width: 20px;
+  height: 20px;
+  list-style-type: none;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+
+.social_net li:hover {
+  opacity: 0.4;
+}
+
+footer .content {
+  width: 1620px;
+}
+.social_net li a,
+.footer_networks li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.instagram {
+  background-image: url(assets/icons/instagram.svg);
+  background-position: center;
+}
+
+.twitter {
+  background-image: url(assets/icons/twitter.svg);
+  background-position: center;
+}
+
+.youtube {
+  background-image: url(assets/icons/youtube.svg);
+  background-position: center;
+}
+
+.vk {
+  background-image: url(assets/icons/vk.svg);
+  background-position: center;
+}
