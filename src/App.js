@@ -1,6 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Fade } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css'
+
+const fadeImages = [
+  'assets/images/hill.jpg',
+  'assets/images/dubai.jpg',
+  'assets/images/sea.jpg'
+];
 
 function App() {
   return (
@@ -35,7 +42,43 @@ function App() {
       </header>
       <section class="first_screen">
         <div class="wrapper">
-          <div class="content">
+          <div className="slide-container">
+          <ul class="social_net">
+              <li class="instagram">
+                <a href="https://www.instagram.com"></a>
+              </li>
+              <li class="twitter">
+                <a href="https://twitter.com"></a>
+              </li>
+              <li class="youtube">
+                <a href="https://youtube.com"></a>
+              </li>
+              <li class="vk">
+                <a href="https://vk.com"></a>
+              </li>
+            </ul>
+            <Fade duration='3000' arrows={false}>
+              <div className="each-fade">
+                <div className="image-container">
+                  <p className="slide_title first_slide_title">Travel from home</p>
+                  <img src={fadeImages[0]} alt='slide1' />
+                </div>
+              </div>
+              <div className="each-fade">
+                <div className="image-container">
+                <p className="slide_title second_slide_title">Explore new places</p>
+                  <img src={fadeImages[1]} alt='slide2' />
+                </div>
+              </div>
+              <div className="each-fade">
+                <div className="image-container">
+                <p className="slide_title third_slide_title">Discover the world</p>
+                  <img src={fadeImages[2]} alt='slide3' />
+                </div>
+              </div>
+            </Fade>
+          </div>
+          {/* <div class="content">
             <div class="zoo_title">
               <p>Watch your favorite animal online</p>
               <a href="pages/live_broadcast/panda.html">
@@ -59,7 +102,7 @@ function App() {
                 <a href="https://vk.com"></a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </section>
     </div>
