@@ -13,15 +13,15 @@ const card_container = {
   boxShadow: '3px 3px 3px 3px black'
 }
 
-function CountryCard({ country }) {
+function USA() {
 
-  const imagePass = 'assets/images/' + country.name + '.jpg';
-  const newStyles = {...card_container, ...{backgroundImage: `url(${imagePass})`}};
+//   const imagePass = 'assets/images/' + country.name + '.jpg';
+  const newStyles = {...card_container, ...{backgroundImage: `url(assets/images/USA.jpg)`}};
   return (
     <div className="card_item" style={newStyles}>
-      <h3>{country.name}</h3>
+      <h3>USA</h3>
     </div>
   )
 }
 
-export default CountryCard;
+export default USA;
