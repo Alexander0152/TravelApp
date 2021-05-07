@@ -5,9 +5,9 @@ import { Fade } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import CountryCard from './CountryCards/CountryCard';
 import USA from './ContryPages/USA';
+import Australia from './ContryPages/Australia';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
 
 const fadeImages = [
   'assets/images/hill.jpg',
@@ -34,19 +34,13 @@ function App() {
     { id: 3, name: 'France', rating: '5.4' }
   ]);
 
-  const Nav = () => (
-    <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-      </ul>
-    </div>
-  );
-  const HomePage = () => <h1>Home Page</h1>;
-  const AboutPage = () => <h1>About Page</h1>;
+  const CardsPanel = () => <h1>Home Page</h1>;
 
-  const pagePath = () => '/';
-  // const pagePath = () => '/about';
+  let pagePath = () => '/';
+
+  function setCountryPagePass(cardName){
+    pagePath = cardName;
+  }
 
   return (
     <Router>
@@ -79,78 +73,55 @@ function App() {
             </div>
           </div>
         </header>
-        <section class="first_screen">
-          <div className="wrapper">
-            <div className="slide-container">
-              <ul class="social_net">
-                <li class="instagram">
-                  <a href="https://www.instagram.com"></a>
-                </li>
-                <li class="twitter">
-                  <a href="https://twitter.com"></a>
-                </li>
-                <li class="youtube">
-                  <a href="https://youtube.com"></a>
-                </li>
-                <li class="vk">
-                  <a href="https://vk.com"></a>
-                </li>
-              </ul>
-              <Fade duration='3000' arrows={false}>
-                <div className="each-fade">
-                  <div className="image-container">
-                    <p className="slide_title first_slide_title">Travel from home</p>
-                    <img src={fadeImages[0]} alt='slide1' />
+        <Route exact path="/" component={CardsPanel}>
+          <section class="first_screen">
+            <div className="wrapper">
+              <div className="slide-container">
+                <ul class="social_net">
+                  <li class="instagram">
+                    <a href="https://www.instagram.com"></a>
+                  </li>
+                  <li class="twitter">
+                    <a href="https://twitter.com"></a>
+                  </li>
+                  <li class="youtube">
+                    <a href="https://youtube.com"></a>
+                  </li>
+                  <li class="vk">
+                    <a href="https://vk.com"></a>
+                  </li>
+                </ul>
+                <Fade duration='3000' arrows={false}>
+                  <div className="each-fade">
+                    <div className="image-container">
+                      <p className="slide_title first_slide_title">Travel from home</p>
+                      <img src={fadeImages[0]} alt='slide1' />
+                    </div>
                   </div>
-                </div>
-                <div className="each-fade">
-                  <div className="image-container">
-                    <p className="slide_title second_slide_title">Explore new places</p>
-                    <img src={fadeImages[1]} alt='slide2' />
+                  <div className="each-fade">
+                    <div className="image-container">
+                      <p className="slide_title second_slide_title">Explore new places</p>
+                      <img src={fadeImages[1]} alt='slide2' />
+                    </div>
                   </div>
-                </div>
-                <div className="each-fade">
-                  <div className="image-container">
-                    <p className="slide_title third_slide_title">Discover the world</p>
-                    <img src={fadeImages[2]} alt='slide3' />
+                  <div className="each-fade">
+                    <div className="image-container">
+                      <p className="slide_title third_slide_title">Discover the world</p>
+                      <img src={fadeImages[2]} alt='slide3' />
+                    </div>
                   </div>
-                </div>
-              </Fade>
+                </Fade>
+              </div>
             </div>
-            {/* <div class="content">
-            <div class="zoo_title">
-              <p>Watch your favorite animal online</p>
-              <a href="pages/live_broadcast/panda.html">
-                <div class="btn_watch_online btn_first_screen">
-                  <div class="play_icon"></div>
-                  <span>WATCH ONLINE</span>
-                </div>
-              </a>
+          </section>
+          <section className="cards">
+            <div className="cards_panel">
+              {cards.map((card) => { return <Link onClick = {setCountryPagePass(card.name)} to={pagePath}><CountryCard country={card} key={card.id} id={card.id} /> </Link> })}
             </div>
-            <ul class="social_net">
-              <li class="instagram">
-                <a href="https://www.instagram.com"></a>
-              </li>
-              <li class="twitter">
-                <a href="https://twitter.com"></a>
-              </li>
-              <li class="youtube">
-                <a href="https://youtube.com"></a>
-              </li>
-              <li class="vk">
-                <a href="https://vk.com"></a>
-              </li>
-            </ul>
-          </div> */}
-          </div>
-        </section>
-        <section className="cards">
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/about" component={USA}/>
-          <div className="cards_panel">
-                {cards.map((card) => { return  <Link to={pagePath}><CountryCard country={card} key={card.id} id={card.id} /> </Link>})}
-          </div>
-        </section>
+          </section>
+        </Route>
+        <Route exact path="/USA" component={USA} />
+        <Route exact path="/Australia" component={Australia} />
         <footer>
           <div class="wrapper">
             <div class="content">
