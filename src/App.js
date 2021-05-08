@@ -143,7 +143,7 @@ function App() {
             <div class="content">
               <div class="footer_navpanel">
                 <a href="#about">
-                  <div class="logo_white"></div>
+                  <div class="logo logo_footer"></div>
                 </a>
                 <ul class="footer_navbar">
                   <li><a href="#">About</a></li>

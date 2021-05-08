@@ -5,6 +5,7 @@ const images = [
   {
     original: 'assets/images/USA1.jpg',
     thumbnail: 'assets/images/USA1.jpg',
+    description : 'dwfsssssssssssssssssssddddddddddddddddddddssssssscw',
   },
   {
     original: 'assets/images/USA2.jpg',

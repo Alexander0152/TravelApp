@@ -28,7 +28,7 @@ code {
   max-width: 1620px;
   margin: 0 150px 0 150px;
 }
-
+/*****************HEADER*************/
 .header {
   width: 100%;
   height: 94px;
@@ -41,7 +41,7 @@ code {
   height: 95px;
   display: flex;
   align-items: center;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 }
 
@@ -52,11 +52,15 @@ code {
 
 .logo {
   margin-left: 0;
-  width: 59px;
-  height: 42px;
-  margin-top: 26px;
+  width: 100px;
+  height: 76px;
   cursor: pointer;
-  /* background-image: url(assets/images/logo.svg); */
+  background-image: url(assets/icons/logo.png);
+  background-size: cover;
+}
+
+.logo_footer {
+  margin-top: -15px
 }
 
 .navbar {
@@ -249,7 +253,7 @@ footer {
   height: 55px;
   display: flex;
   position: relative;
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 .footer_navpanel a {
@@ -261,7 +265,7 @@ footer {
   width: 404px;
   height: 21px;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
   list-style-type: none;
   margin-top: 16.5px;
   margin-left: 47.2839%;
@@ -329,7 +333,7 @@ footer {
   height: 347px;
   text-align: left;
   float: left;
-  margin-top: 57px;
+  margin-top: 90px;
   margin-bottom: 60px;
 }
 
@@ -485,7 +489,7 @@ footer {
 
 .footer_copyrights {
   display: block;
-  margin-top: 140px;
+  margin-top: 165px;
   height: 61px;
   width: 1620px;
   border: none;
