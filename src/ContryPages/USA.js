@@ -1,6 +1,7 @@
 import React from "react";
-import Weather from '../Weather/Weather'
-// import { NavLink } from "react-router-dom";
+// import Weather from '../Weather/Weather'
+import CountryPageSlider from '../CountryPageSlider/CountryPageSlider'
+import Map from '../Map/Map'
 
 const card_container = {
   width: '300px',
@@ -38,9 +39,14 @@ function USA() {
              encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""
                   src="https://www.youtube.com/embed/98H5AN_vfOY" frameborder="0" title="USA video">
                 </iframe></div>
-                <Weather/>
             </div>
           </div>
+          <section className="country-page__gallery">
+          <h1 class="gallery-title">Sights</h1>
+          <CountryPageSlider/>
+          <h1 class="gallery-title">Map</h1>
+          <Map />
+          </section>
         </main>
       </div>
     </section>

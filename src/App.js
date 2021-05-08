@@ -42,6 +42,22 @@ function App() {
     pagePath = cardName;
   }
 
+  // reqHistory(event) {
+  //   fetch('/users', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       id: this.state.id,
+  //       item: this.history
+  //     })
+  //   })
+  //     .then(res => res.json())
+  //     .then(getHistory => this.setState({ getHistory }));
+  // };
+
   return (
     <Router>
       <div className="App">

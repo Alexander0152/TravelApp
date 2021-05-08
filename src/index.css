@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
+@import "~react-image-gallery/styles/css/image-gallery.css";
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -597,4 +598,33 @@ address {
 .country-page__info__left__video {
   width: 710px;
   height: 396px;
+}
+
+.country-page__gallery {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.gallery-title {
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.map-container {
+  margin: 0 auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  width: 1080px;
+  height: 656px;
+}
+
+.mapboxgl-map {
+  font: 12px/20px Helvetica Neue,Arial,Helvetica,sans-serif;
+  overflow: hidden;
+  position: relative;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
