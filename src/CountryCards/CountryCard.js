@@ -15,11 +15,11 @@ const card_container = {
 
 function CountryCard({ country }) {
 
-  const imagePass = 'assets/images/' + country.name + '.jpg';
+  const imagePass = 'assets/images/' + country.countryname + '.jpg';
   const newStyles = {...card_container, ...{backgroundImage: `url(${imagePass})`}};
   return (
     <div className="card_item" style={newStyles}>
-      <h3>{country.name}</h3>
+      <h3>{country.countryname}</h3>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Fade } from 'react-slideshow-image';
@@ -17,22 +17,24 @@ const fadeImages = [
 
 function App() {
   const [cards, setCards] = React.useState([
-    { id: 1, name: 'USA', rating: '8.4' },
-    { id: 2, name: 'Australia', rating: '8.8' },
-    { id: 3, name: 'France', rating: '5.4' },
-    { id: 2, name: 'Australia', rating: '8.8' },
-    { id: 1, name: 'USA', rating: '8.4' },
-    { id: 3, name: 'France', rating: '5.4' },
-    { id: 1, name: 'USA', rating: '8.4' },
-    { id: 3, name: 'France', rating: '5.4' },
-    { id: 2, name: 'Australia', rating: '8.8' },
-    { id: 1, name: 'USA', rating: '8.4' },
-    { id: 2, name: 'Australia', rating: '8.8' },
-    { id: 1, name: 'USA', rating: '8.4' },
-    { id: 3, name: 'France', rating: '5.4' },
-    { id: 2, name: 'Australia', rating: '8.8' },
-    { id: 3, name: 'France', rating: '5.4' }
+    { id: 1, countryname: 'USA', rating: '8.4' },
+    { id: 2, countryname: 'Australia', rating: '8.8' },
+    { id: 3, countryname: 'France', rating: '5.4' },
+    { id: 2, countryname: 'Australia', rating: '8.8' },
+    { id: 1, countryname: 'USA', rating: '8.4' },
+    { id: 3, countryname: 'France', rating: '5.4' },
+    { id: 1, countryname: 'France', rating: '5.4' },
+    { id: 2, countryname: 'Australia', rating: '8.8' },
+    { id: 1, countryname: 'USA', rating: '8.4' },
+    { id: 2, countryname: 'Australia', rating: '8.8' },
+    { id: 1, countryname: 'USA', rating: '8.4' },
+    { id: 3, countryname: 'France', rating: '5.4' },
+    { id: 2, countryname: 'Australia', rating: '8.8' },
+    { id: 3, countryname: 'France', rating: '5.4' }
   ]);
+  
+  // const [test, setTest] = useState([
+  //   {id:1, name: "Mike", age: 26}]);
 
   const CardsPanel = () => <h1>Home Page</h1>;
 
@@ -42,33 +44,39 @@ function App() {
     pagePath = cardName;
   }
 
-  // reqHistory(event) {
-  //   fetch('/users', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       id: this.state.id,
-  //       item: this.history
-  //     })
-  //   })
-  //     .then(res => res.json())
-  //     .then(getHistory => this.setState({ getHistory }));
-  // };
+  useEffect(() => {
+     fetch('/api/countries',{
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setCards(result);
+        },
+        (error) => {
+          console.log(error);
+          setCards({id:1, countryname: "ERROR", rating: 3});
+        }
+      );
+
+  }, [])
 
   return (
     <Router>
       <div className="App">
         <header className="header">
-          <div class="wrapper">
-            <div class="header_content">
+          <div className="wrapper">
+            <div className="header_content">
               <a href="index.html">
-                <div class="logo"></div>
+                <div className="logo"></div>
               </a>
-              <ul class="navbar">
-                <li class="header_active"><a href="#">About</a></li>
+              <ul className="navbar">
+                <li className="header_active"><a href="#"></a></li>
+                <li className="header_active"><a href="#">About</a></li>
                 <li><a href="pages/live_broadcast/panda.html">Zoos</a></li>
                 <li><a href="pages/intermediate_page/map.html">Map</a></li>
                 <li><a href="#contact_us">Contact Us</a></li>
@@ -79,11 +87,11 @@ function App() {
                   >
                 </li>
               </ul>
-              <label class="switch">
+              <label className="switch">
                 <input type="checkbox" />
-                <span class="theme_slider"></span>
+                <span className="theme_slider"></span>
               </label>
-              <button class="btn_navigation"></button>
+              <button className="btn_navigation"></button>
               <button className="btn btn-info">Log in</button>
               <button className="btn btn-info">Sign in</button>
             </div>
@@ -93,17 +101,17 @@ function App() {
           <section class="first_screen">
             <div className="wrapper">
               <div className="slide-container">
-                <ul class="social_net">
-                  <li class="instagram">
+                <ul className="social_net">
+                  <li className="instagram">
                     <a href="https://www.instagram.com"></a>
                   </li>
-                  <li class="twitter">
+                  <li className="twitter">
                     <a href="https://twitter.com"></a>
                   </li>
-                  <li class="youtube">
+                  <li className="youtube">
                     <a href="https://youtube.com"></a>
                   </li>
-                  <li class="vk">
+                  <li className="vk">
                     <a href="https://vk.com"></a>
                   </li>
                 </ul>
@@ -132,7 +140,7 @@ function App() {
           </section>
           <section className="cards">
             <div className="cards_panel">
-              {cards.map((card) => { return <Link onClick = {setCountryPagePass(card.name)} to={pagePath}><CountryCard country={card} key={card.id} id={card.id} /> </Link> })}
+              {cards.map((card) => { return <Link onClick = {setCountryPagePass(card.countryname)} to={pagePath}><CountryCard country={card} key={card.id} id={card.id} /> </Link> })}
             </div>
           </section>
         </Route>
