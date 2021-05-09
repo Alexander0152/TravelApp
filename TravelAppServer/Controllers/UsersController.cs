@@ -11,8 +11,8 @@ namespace TravelAppServer.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        UsersContext db;
-        public UsersController(UsersContext context)
+        TravelUsersContext db;
+        public UsersController(TravelUsersContext context)
         {
             db = context;
             if (!db.Users.Any())
