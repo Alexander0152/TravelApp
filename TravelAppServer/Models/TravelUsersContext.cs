@@ -18,14 +18,16 @@ namespace TravelAppServer.Models
 
             modelBuilder.Entity<User>().Property(u => u.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
             modelBuilder.Entity<User>().Property(u => u.Name).HasColumnType("nvarchar(45)").IsRequired();
-            modelBuilder.Entity<User>().Property(u => u.Age).HasColumnType("int").IsRequired();   
+            modelBuilder.Entity<User>().Property(u => u.Email).HasColumnType("nvarchar(45)").IsRequired();   
+            modelBuilder.Entity<User>().Property(u => u.Password).HasColumnType("nvarchar(45)").IsRequired();   
+            modelBuilder.Entity<User>().Property(u => u.Status).HasColumnType("nvarchar(45)").IsRequired();   
             
             
             modelBuilder.Entity<Country>().ToTable("Countries");
 
             modelBuilder.Entity<Country>().Property(u => u.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
             modelBuilder.Entity<Country>().Property(u => u.Countryname).HasColumnType("nvarchar(45)").IsRequired();
-            modelBuilder.Entity<Country>().Property(u => u.Rating).HasColumnType("int").IsRequired();
+            modelBuilder.Entity<Country>().Property(u => u.Rating).HasColumnType("double").IsRequired();
         }
     }
 }

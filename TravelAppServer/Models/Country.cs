@@ -9,6 +9,6 @@ namespace TravelAppServer.Models
     {
         public int Id { get; set; }
         public string Countryname { get; set; }
-        public int Rating { get; set; }
+        public double Rating { get; set; }
     }
 }

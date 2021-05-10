@@ -17,8 +17,7 @@ namespace TravelAppServer.Controllers
             db = context;
             if (!db.Users.Any())
             {
-                db.Users.Add(new User { Name = "Tom", Age = 26 });
-                db.Users.Add(new User { Name = "Alice", Age = 31 });
+                db.Users.Add(new User { Name = "Tom", Email = "tom@gmail.com", Password = "0000", Status = "user" });
                 db.SaveChanges();
             }
         }
@@ -42,7 +41,13 @@ namespace TravelAppServer.Controllers
 
         // POST api/users
         [HttpPost]
-        public async Task<ActionResult<User>> Post(User user)
+        public async Task<ActionResult<User>> Post()
+        {
+            return Ok("d");
+        }
+
+        [HttpPost("[action]")]
+        public async Task<ActionResult<User>> AddUser([FromBody] User user)
         {
             if (user == null)
             {

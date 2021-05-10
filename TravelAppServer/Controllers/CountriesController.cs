@@ -17,7 +17,7 @@ namespace TravelAppServer.Controllers
             db = context;
             if (!db.Countries.Any())
             {
-                db.Countries.Add(new Country { Countryname = "Default Country", Rating = 10 });
+                db.Countries.Add(new Country { Countryname = "Default Country", Rating = 9.9 });
                 db.SaveChanges();
             }
         }
