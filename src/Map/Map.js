@@ -12,7 +12,7 @@ mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worke
 mapboxgl.accessToken =
   "pk.eyJ1IjoieXVyYTI1MDY5MSIsImEiOiJja203emdiMjIxMnVxMm9tdGxlcDRkZXpyIn0.MBn74R_hf0eodqa26JqMHg";
 
-function Map() {
+function Map({countryName}) {
 //   const language = useSelector(getLanguageFromState);
   const relCountryCode = {
     France: "FRA",
@@ -34,13 +34,14 @@ function Map() {
     USA: [-77.036527, 38.899513],
     UK: [-0.12766, 51.507351],
   };
+  
   const mapContainerRef = useRef(null);
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/light-v9",
-      center: reCountryLngLtd['Mexico'],
-      zoom: 4,
+      center: reCountryLngLtd[countryName],
+      zoom: 3.2,
       minZoom: 2,
     });
 
@@ -68,9 +69,9 @@ function Map() {
           ]);
         }
       });
-      new mapboxgl.Marker().setLngLat(reCountryLngLtd['Mexico']).addTo(map);
+      new mapboxgl.Marker().setLngLat(reCountryLngLtd[countryName]).addTo(map);
 
-      map.setFilter("countries", ["in", "ADM0_A3_IS", relCountryCode['Mexico']]);
+      map.setFilter("countries", ["in", "ADM0_A3_IS", relCountryCode[countryName]]);
     });
     return () => map.remove();
   }, []);

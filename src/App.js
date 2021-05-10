@@ -6,6 +6,8 @@ import 'react-slideshow-image/dist/styles.css'
 import CountryCard from './CountryCards/CountryCard';
 import USA from './ContryPages/USA';
 import Australia from './ContryPages/Australia';
+import LoginModal from './Modal/LoginModal'
+import SignInModal from './Modal/SigninModal'
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -32,7 +34,7 @@ function App() {
     { id: 2, countryname: 'Australia', rating: '8.8' },
     { id: 3, countryname: 'France', rating: '5.4' }
   ]);
-  
+
   // const [test, setTest] = useState([
   //   {id:1, name: "Mike", age: 26}]);
 
@@ -40,12 +42,12 @@ function App() {
 
   let pagePath = () => '/';
 
-  function setCountryPagePass(cardName){
+  function setCountryPagePass(cardName) {
     pagePath = cardName;
   }
 
   useEffect(() => {
-     fetch('/api/countries',{
+    fetch('/api/countries', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -59,7 +61,7 @@ function App() {
         },
         (error) => {
           console.log(error);
-          setCards({id:1, countryname: "ERROR", rating: 3});
+          setCards([{ id: 1, countryname: "ERROR", rating: 3 }]);
         }
       );
 
@@ -77,23 +79,12 @@ function App() {
               <ul className="navbar">
                 <li className="header_active"><a href="#"></a></li>
                 <li className="header_active"><a href="#">About</a></li>
-                <li><a href="pages/live_broadcast/panda.html">Zoos</a></li>
+                <li><a href="pages/live_broadcast/panda.html">Countries</a></li>
                 <li><a href="pages/intermediate_page/map.html">Map</a></li>
                 <li><a href="#contact_us">Contact Us</a></li>
-                <li>
-                  <a
-                    href="https://www.figma.com/file/HKt5Nlx0jghQtJp6jW9q8F/zooApp"
-                  >Design</a
-                  >
-                </li>
               </ul>
-              <label className="switch">
-                <input type="checkbox" />
-                <span className="theme_slider"></span>
-              </label>
-              <button className="btn_navigation"></button>
-              <button className="btn btn-info">Log in</button>
-              <button className="btn btn-info">Sign in</button>
+              <LoginModal />
+              <SignInModal />
             </div>
           </div>
         </header>
@@ -140,7 +131,7 @@ function App() {
           </section>
           <section className="cards">
             <div className="cards_panel">
-              {cards.map((card) => { return <Link onClick = {setCountryPagePass(card.countryname)} to={pagePath}><CountryCard country={card} key={card.id} id={card.id} /> </Link> })}
+              {cards.map((card) => { return <Link onClick={setCountryPagePass(card.countryname)} to={pagePath}><CountryCard country={card} key={card.id} id={card.id} /> </Link> })}
             </div>
           </section>
         </Route>
@@ -155,7 +146,7 @@ function App() {
                 </a>
                 <ul class="footer_navbar">
                   <li><a href="#">About</a></li>
-                  <li><a href="pages/live_broadcast/panda.html">Zoos</a></li>
+                  <li><a href="pages/live_broadcast/panda.html">Countries</a></li>
                   <li><a href="pages/intermediate_page/map.html">Map</a></li>
                   <li>
                     <a

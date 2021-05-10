@@ -4,7 +4,6 @@ import React from "react";
 const card_container = {
   width: '300px',
   height: '300px',
-  backgroundColor: 'red',
   backgroundSize: 'cover',
   marginBottom: '50px',
   padding: 0,
@@ -13,13 +12,31 @@ const card_container = {
   boxShadow: '3px 3px 3px 3px black'
 }
 
+const rating_block = {
+  display: 'block',
+  position: 'relative',
+  width: '300px',
+  height: '80px',
+  marginTop: '170px',
+  color: 'white',
+  backgroundColor: 'rgba(0, 0, 0, 0.373)'
+}
+
+const rating = {
+  paddingTop: '20px',
+  color: 'white',
+}
+
 function CountryCard({ country }) {
 
   const imagePass = 'assets/images/' + country.countryname + '.jpg';
-  const newStyles = {...card_container, ...{backgroundImage: `url(${imagePass})`}};
+  const newStyles = { ...card_container, ...{ backgroundImage: `url(${imagePass})` } };
   return (
     <div className="card_item" style={newStyles}>
       <h3>{country.countryname}</h3>
+      <div style={rating_block}>
+      <h4 style={rating}>Rating: {country.rating}</h4>
+      </div>
     </div>
   )
 }

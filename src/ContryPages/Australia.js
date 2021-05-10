@@ -23,7 +23,7 @@ function USA() {
       <div className="wrapper">
         <main className="country-page__container">
           <p className="country-page__title">Australia</p>
-          <h3>Washington</h3>
+          <h3>Canberra</h3>
           <div className="country-page__intro__images">
             <img className="country-page__intro__images__first" src="assets/images/Australia_intro1.jpg" alt="Intro image1" />
             <img className="country-page__intro__images__second" src="assets/images/Australia_intro2.jpg" alt="Intro image2" />
@@ -47,7 +47,7 @@ function USA() {
             <h1 class="gallery-title">Sights</h1>
             <CountryPageSlider />
             <h1 class="gallery-title">Map</h1>
-            <Map />
+            <Map countryName={'Australia'} />
           </section>
         </main>
       </div>

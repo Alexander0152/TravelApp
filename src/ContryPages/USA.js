@@ -15,7 +15,7 @@ const card_container = {
   boxShadow: '3px 3px 3px 3px black'
 }
 
-function USA() {
+function USA(country) {
 
   const newStyles = { ...card_container, ...{ backgroundImage: `url(assets/images/USA.jpg)` } };
   return (
@@ -45,7 +45,7 @@ function USA() {
           <h1 class="gallery-title">Sights</h1>
           <CountryPageSlider/>
           <h1 class="gallery-title">Map</h1>
-          <Map />
+          <Map countryName={'USA'}/>
           </section>
         </main>
       </div>
