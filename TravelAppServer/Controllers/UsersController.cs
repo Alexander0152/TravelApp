@@ -39,12 +39,12 @@ namespace TravelAppServer.Controllers
             return new ObjectResult(user);
         }
 
-        // POST api/users
-        [HttpPost]
-        public async Task<ActionResult<User>> Post()
-        {
-            return Ok("d");
-        }
+        //// POST api/users
+        //[HttpPost]
+        //public async Task<ActionResult<User>> Post()
+        //{
+        //    return Ok("d");
+        //}
 
         [HttpPost("[action]")]
         public async Task<ActionResult<User>> AddUser([FromBody] User user)
@@ -55,7 +55,7 @@ namespace TravelAppServer.Controllers
             }
 
             db.Users.Add(user);
-            await db.SaveChangesAsync();
+            await db.SaveChangesAsync();    
             return Ok(user);
         }
 

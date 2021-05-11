@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace TravelAppServer.Models
 {
-    public class Country
+    public class Feedback
     {
         public int Id { get; set; }
-        public string Countryname { get; set; }
-        public double Rating { get; set; }
-        public int NumberOfVoters { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Text { get; set; }
     }
 }

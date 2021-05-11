@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using TravelAppServer.Models;
-using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using Microsoft.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -32,7 +31,7 @@ namespace TravelAppServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers(); // ?????????? ????????????? ?? ???????????
+                endpoints.MapControllers(); 
             });
         }
     }

@@ -7,6 +7,7 @@ namespace TravelAppServer.Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
 
         public TravelUsersContext(DbContextOptions<TravelUsersContext> options) : base(options)
         {
@@ -28,6 +29,14 @@ namespace TravelAppServer.Models
             modelBuilder.Entity<Country>().Property(u => u.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
             modelBuilder.Entity<Country>().Property(u => u.Countryname).HasColumnType("nvarchar(45)").IsRequired();
             modelBuilder.Entity<Country>().Property(u => u.Rating).HasColumnType("double").IsRequired();
+            modelBuilder.Entity<Country>().Property(u => u.NumberOfVoters).HasColumnType("int").IsRequired();      
+            
+            modelBuilder.Entity<Feedback>().ToTable("Feedbacks");
+
+            modelBuilder.Entity<Feedback>().Property(u => u.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
+            modelBuilder.Entity<Feedback>().Property(u => u.Name).HasColumnType("nvarchar(45)").IsRequired();
+            modelBuilder.Entity<Feedback>().Property(u => u.Email).HasColumnType("nvarchar(45)").IsRequired();
+            modelBuilder.Entity<Feedback>().Property(u => u.Text).HasColumnType("nvarchar(45)").IsRequired();
         }
     }
 }

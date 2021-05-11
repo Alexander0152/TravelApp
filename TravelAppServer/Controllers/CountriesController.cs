@@ -39,6 +39,7 @@ namespace TravelAppServer.Controllers
             return new ObjectResult(country);
         }
 
+
         // POST api/users
         [HttpPost]
         public async Task<ActionResult<Country>> Post(Country country)
@@ -54,8 +55,8 @@ namespace TravelAppServer.Controllers
         }
 
         // PUT api/users/
-        [HttpPut]
-        public async Task<ActionResult<Country>> Put(Country country)
+        [HttpPost("[action]")]
+        public async Task<ActionResult<Country>> UpdateCountry([FromBody] Country country)
         {
             if (country == null)
             {
@@ -70,6 +71,17 @@ namespace TravelAppServer.Controllers
             await db.SaveChangesAsync();
             return Ok(country);
         }
+        //public async Task<ActionResult<User>> AddUser([FromBody] User user)
+        //{
+        //    if (user == null)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    db.Users.Add(user);
+        //    await db.SaveChangesAsync();
+        //    return Ok(user);
+        //}
 
         // DELETE api/users/5
         [HttpDelete("{id}")]
