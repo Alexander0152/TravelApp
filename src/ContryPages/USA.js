@@ -2,6 +2,7 @@ import React from "react";
 // import Weather from '../Weather/Weather'
 import CountryPageSlider from '../CountryPageSlider/CountryPageSlider'
 import Map from '../Map/Map'
+import RatingWidget from '../RatingWidget/RatingWidget'
 
 const card_container = {
   width: '300px',
@@ -15,7 +16,7 @@ const card_container = {
   boxShadow: '3px 3px 3px 3px black'
 }
 
-function USA(country) {
+function USA({country}) {
 
   const newStyles = { ...card_container, ...{ backgroundImage: `url(assets/images/USA.jpg)` } };
   return (
@@ -35,6 +36,7 @@ function USA(country) {
               Amusement Parks, Festivals, Gambling Centers, Golf Courses, Historic Buildings and Monuments,
             Hotels, Museums, Galleries, Outdoor Activities, Spas, Restaurants, and Sports Events. </p>
               <div>
+                < RatingWidget country={country} />
                 <iframe class="country-page__info__left__video" allow="accelerometer; autoplay; clipboard-write;
              encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""
                   src="https://www.youtube.com/embed/98H5AN_vfOY" frameborder="0" title="USA video">
@@ -42,10 +44,10 @@ function USA(country) {
             </div>
           </div>
           <section className="country-page__gallery">
-          <h1 class="gallery-title">Sights</h1>
-          <CountryPageSlider/>
-          <h1 class="gallery-title">Map</h1>
-          <Map countryName={'USA'}/>
+            <h1 class="gallery-title">Sights</h1>
+            <CountryPageSlider />
+            <h1 class="gallery-title">Map</h1>
+            <Map countryName={'USA'} />
           </section>
         </main>
       </div>

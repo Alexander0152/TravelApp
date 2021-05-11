@@ -19,24 +19,37 @@ const fadeImages = [
 
 function App() {
   const [cards, setCards] = React.useState([
-    { id: 1, countryname: 'USA', rating: '8.4' },
-    { id: 2, countryname: 'Australia', rating: '8.8' },
-    { id: 3, countryname: 'France', rating: '5.4' },
-    { id: 2, countryname: 'Australia', rating: '8.8' },
-    { id: 1, countryname: 'USA', rating: '8.4' },
-    { id: 3, countryname: 'France', rating: '5.4' },
-    { id: 1, countryname: 'France', rating: '5.4' },
-    { id: 2, countryname: 'Australia', rating: '8.8' },
-    { id: 1, countryname: 'USA', rating: '8.4' },
-    { id: 2, countryname: 'Australia', rating: '8.8' },
-    { id: 1, countryname: 'USA', rating: '8.4' },
-    { id: 3, countryname: 'France', rating: '5.4' },
-    { id: 2, countryname: 'Australia', rating: '8.8' },
-    { id: 3, countryname: 'France', rating: '5.4' }
+    { id: 1, countryname: 'USA', rating: 8.4, numberOfVoters: 300 },
+    { id: 2, countryname: 'Australia', rating: 8.8, numberOfVoters: 300 },
+    { id: 3, countryname: 'France', rating: 5.4, numberOfVoters: 300 },
+    { id: 2, countryname: 'Australia', rating: 8.8, numberOfVoters: 300 }
   ]);
 
-  // const [test, setTest] = useState([
-  //   {id:1, name: "Mike", age: 26}]);
+  const [feedbackName, setFeedbackName] =  React.useState('');
+  const [feedbackEmail, setFeedbackEmail] =  React.useState('');
+  const [feedbackText, setFeedbackText] =  React.useState('');
+
+  function sortByRating() {
+    const sorted = [...cards].sort(function (a, b) {
+      let keyA = new Number(a.rating),
+        keyB = new Number(b.rating);
+      if (keyA > keyB) return -1;
+      if (keyA < keyB) return 1;
+      return 0;
+    });
+    setCards(sorted); 
+  }
+
+  function sortByAlphabet() {
+    const sorted = [...cards].sort(function (a, b) {
+      let keyA = new String(a.countryname),
+        keyB = new String(b.countryname);
+      if (keyA < keyB) return -1;
+      if (keyA > keyB) return 1;
+      return 0;
+    });
+    setCards(sorted); 
+  }
 
   const CardsPanel = () => <h1>Home Page</h1>;
 
@@ -61,12 +74,32 @@ function App() {
         },
         (error) => {
           console.log(error);
-          setCards([{ id: 1, countryname: "ERROR", rating: 3 }]);
+          setCards([{ id: 1, countryname: "ERROR", rating: 3, numberofvoters: 300 }]);
         }
       );
-
   }, [])
 
+  function addFeedbackToDb(event){
+    event.preventDefault();
+    try {
+        let data = {
+            Name: feedbackName,
+            Email: feedbackEmail,
+            Text: feedbackText
+        };
+        fetch('api/feedback/AddFeedback', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+
+        alert('Feedback send successfully!');
+    } catch (e) {
+      alert('Something goes wrong!');
+    }
+};
   return (
     <Router>
       <div className="App">
@@ -130,13 +163,17 @@ function App() {
             </div>
           </section>
           <section className="cards">
+            <div className="panel_sort">
+            <button className="btn btn-info btn_sort" onClick={() => sortByRating()}>Sort by rating</button>
+            <button className="btn btn-info btn_sort" onClick={() => sortByAlphabet()}>Sort by alphabet</button>
+            </div>
             <div className="cards_panel">
               {cards.map((card) => { return <Link onClick={setCountryPagePass(card.countryname)} to={pagePath}><CountryCard country={card} key={card.id} id={card.id} /> </Link> })}
             </div>
           </section>
         </Route>
-        <Route exact path="/USA" component={USA} />
-        <Route exact path="/Australia" component={Australia} />
+        <Route exact path="/USA" component={() => <USA country={cards[0]} />} />
+        <Route exact path="/Australia" component={() => <Australia country={cards[4]} />} />
         <footer>
           <div class="wrapper">
             <div class="content">
@@ -148,12 +185,7 @@ function App() {
                   <li><a href="#">About</a></li>
                   <li><a href="pages/live_broadcast/panda.html">Countries</a></li>
                   <li><a href="pages/intermediate_page/map.html">Map</a></li>
-                  <li>
-                    <a
-                      href="https://www.figma.com/file/HKt5Nlx0jghQtJp6jW9q8F/zooApp"
-                    >Design</a
-                    >
-                  </li>
+                  <li><a href="pages/intermediate_page/map.html">Contuct us</a></li>
                 </ul>
                 <button class="btn_donate_for_volunteers">
                   <span>DONATE FOR VOLUNTEERS</span>
@@ -164,21 +196,16 @@ function App() {
                   <li><a href="#">About</a></li>
                   <li><a href="pages/live_broadcast/panda.html">Zoos</a></li>
                   <li><a href="pages/intermediate_page/map.html">Map</a></li>
-                  <li>
-                    <a
-                      href="https://www.figma.com/file/HKt5Nlx0jghQtJp6jW9q8F/zooApp"
-                    >Design</a
-                    >
-                  </li>
                 </ul>
-                <span class="contact_us_title">Contact us</span>
-                <form class="contact_us_form" method="POST">
+                <span class="contact_us_title">Give feedback</span>
+                <form class="contact_us_form" method="POST" onSubmit={(e) => addFeedbackToDb(e)}>
                   <input
                     class="contact_form_item"
                     type="text"
                     name="contactName"
                     placeholder="Name"
                     required=""
+                    onInput={(e)=>(setFeedbackName(e.target.value))}
                   />
                   <input
                     class="contact_form_item"
@@ -186,17 +213,12 @@ function App() {
                     name="contactEmail"
                     placeholder="Email"
                     required=""
+                    onInput={(e)=>(setFeedbackEmail(e.target.value))}
                   />
                   <fieldset>
                     <legend>Please enter your message</legend>
-                    <textarea class="contact_text_area"></textarea>
+                    <textarea class="contact_text_area" onInput={(e)=>(setFeedbackText(e.target.value))}></textarea>
                   </fieldset>
-                  <div class="contact_checkbox_container">
-                    <input type="checkbox" id="contactCheckbox" required="" />
-                    <label for="contact_checkbox" class="checkbox_title"
-                    >I agree to the processing of Personal Data</label
-                    >
-                  </div>
                   <button type="submit" class="btn_contact_submit">
                     send
                 <img src="assets/icons/arrow_right_submit.svg" alt="send" />
